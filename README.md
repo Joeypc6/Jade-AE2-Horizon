@@ -10,10 +10,14 @@ crafting and stored power in Jade, and naming the facade or cable under the cros
 
 Rewritten in Rust as a small bridge between the two ports. No difference in play is known.
 
+## Build order
+
+This bundle calls into `mixins/ae2` and `mixins/jade` directly, so it won't compile without both in the same folder.
+
 ## Build
 
 This is a [Horizon](https://github.com/horizon-rust/horizon) native mod bundle: Rust mixins compiled into the game.
-It was built and tested on Horizon commit `c9d474d` (Minecraft 26.3, native hooks API 80), as `native-c9d474d-fafa5c3981b4`.
+It was built and tested on Horizon commit `c9d474d` (Minecraft 26.3, native hooks API 80), as `native-c9d474d-f8565186de6e`.
 Native mods are unsandboxed code that runs with your rights, so read what you build.
 
 Put each bundle's `mixins/<id>` folder in one folder, then:
