@@ -17,7 +17,7 @@ This bundle calls into `mixins/ae2` and `mixins/jade` directly, so it won't comp
 ## Build
 
 This is a [Horizon](https://github.com/horizon-rust/horizon) native mod bundle: Rust mixins compiled into the game.
-It was built and tested on Horizon commit `6475f62` (Minecraft 26.3, native hooks API 359), as `native-6475f62-4af1929d1eac`.
+It was built and tested on Horizon commit `6475f62` (Minecraft 26.3, native hooks API 359), as `native-6475f62-d106215a688b`.
 Native mods are unsandboxed code that runs with your rights, so read what you build.
 
 Put each bundle's `mixins/<id>` folder in one folder, then:

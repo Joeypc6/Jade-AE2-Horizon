@@ -2,7 +2,21 @@
 use crate::game::Game;
 use crate::game::jade::{Line, Target};
 
+/// TooltipIds, as `config.jade.plugin_ae2.*` names them.
+const OPTIONS: [(&str, &str); 7] = [
+    ("plugin_ae2.grid_node_state", "AE2 Network State"),
+    ("plugin_ae2.power_storage", "AE2 Power State"),
+    ("plugin_ae2.crafting_monitor", "AE2 Crafting Monitor"),
+    ("plugin_ae2.pattern_provider", "AE2 Pattern Provider"),
+    ("plugin_ae2.charger", "AE2 Charger"),
+    ("plugin_ae2.part_tooltip", "AE2 Part Tooltip"),
+    ("plugin_ae2.debug", "AE2 Debug Info"),
+];
+
 pub fn register() {
+    for (key, label) in OPTIONS {
+        crate::game::jade::register_option(key, label, true);
+    }
     crate::game::jade::register_server(server_lines);
     crate::game::jade::register_client(client_lines);
     crate::game::jade::register_name(part_host_name);
@@ -19,7 +33,8 @@ fn server_lines(game: &mut Game<'_>, pos: [i32; 3], block: &str, lines: &mut Vec
     if !block.starts_with("ae2:") {
         return;
     }
-    lines.extend(crate::game::port_ae2_me::describe(game, pos));
+    let off = OPTIONS.iter().map(|(k, _)| *k).filter(|k| !crate::game::jade::plugin_on(game, k)).collect();
+    lines.extend(crate::game::port_ae2_me::describe_without(game, pos, off));
 }
 
 /// A cell in the hand: nothing extra (its tooltip has it); kept for parts drawn on the client.
