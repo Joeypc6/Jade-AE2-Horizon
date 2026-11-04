@@ -4,6 +4,10 @@ version = "15.4.12"
 # After AE2 and Jade: it registers AE2's providers with Jade (both must be in the same build).
 priority = 110
 
+# The Horizon commit this bundle was built and tested on.
+[compatibility]
+horizon_revision = "c9d474dd9116e84c243f8992d75c11314df56f06"
+
 # AE2's Jade plugin (appeng.integration.modules.jade): network state, channels, P2P links, charge, crafting,
 # stored power.
 [[module]]
