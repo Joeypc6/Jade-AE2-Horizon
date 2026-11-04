@@ -1,0 +1,42 @@
+[mod]
+id = "jade_ae2"
+version = "15.4.12"
+# After AE2 and Jade: it registers AE2's providers with Jade (both must be in the same build).
+priority = 110
+
+# AE2's Jade plugin (appeng.integration.modules.jade): network state, channels, P2P links, charge, crafting,
+# stored power.
+[[module]]
+id = "jade_ae2"
+file = "crates/horizon-client/src/game.rs"
+name = "jade_ae2"
+source = "jade_ae2.rs"
+
+# Registers the providers: on the client (each frame) and the server (each tick); registering again does nothing.
+[[injection]]
+id = "frame"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_frame"
+helper = "register.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+]
+
+[[injection]]
+id = "server-tick"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_server_tick"
+helper = "register_server.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+]
+
+# Listed in Options > Mods, as Fabric's mod list shows it.
+[[injection]]
+id = "list"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_mods"
+helper = "list.rs"
+bindings = [
+  { name = "mods", ty = "&mut Vec<crate::game::native_hooks::NativeMod>", value = "&mut *mods" },
+]
