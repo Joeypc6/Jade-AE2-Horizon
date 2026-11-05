@@ -34,6 +34,8 @@ fn server_lines(game: &mut Game<'_>, pos: [i32; 3], block: &str, lines: &mut Vec
         return;
     }
     let off = OPTIONS.iter().map(|(k, _)| *k).filter(|k| !crate::game::jade::plugin_on(game, k)).collect();
+    // A cell of parts: the part looked at.
+    let pos = crate::game::jade::request_hit().and_then(|hit| crate::game::port_ae2_me::part_under(game, pos, hit)).unwrap_or(pos);
     lines.extend(crate::game::port_ae2_me::describe_without(game, pos, off));
 }
 
