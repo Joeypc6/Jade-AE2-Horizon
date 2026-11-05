@@ -8,7 +8,11 @@ crafting and stored power in Jade, and naming the facade or cable under the cros
 
 ## What differs from the original
 
-Rewritten in Rust as a small bridge between the two ports. No difference in play is known.
+Rewritten in Rust as a small bridge between the two ports.
+
+### Missing or not the same
+
+No missing feature is known. Its lines cover what the AE2 port has, so they share that port's limits.
 
 ## Build order
 
@@ -29,7 +33,9 @@ horizon-launcher native-build "path/to/that/folder" --trust-native-code
 ## Status
 
 An unofficial port, not made or endorsed by the original authors. Please report problems here, not to them.
-It was tested on Windows, in single player and on LAN with one guest. Other platforms and dedicated servers were not tested.
+It was tested on Windows, in single player and on LAN with one guest. On a dedicated server its lines were checked on an earlier build,
+not this one. Other platforms were not tested.
+A Horizon update can break it until it is rebuilt: it is built for the one Horizon commit named under Build.
 
 ## Credits and licence
 
